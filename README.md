@@ -55,7 +55,9 @@ Crie uma "sala separada" para sua tarefa. Use nomes semânticos:
 - ``fix/ para correção de bugs (ex: fix/botao-quebrado)``
 - ``docs/ para documentação``
 
+```
 git checkout -b feat/nome-da-sua-tarefa
+```
 
 ### Passo 3: Salvando o Trabalho (Commit)
 Faça suas alterações e salve:
@@ -87,3 +89,44 @@ git push origin feat/nome-da-sua-tarefa
 | :--- | :--- |
 | npm run dev | Inicia o servidor |
 | npm run build | Cria a versão final |
+
+---
+## 🐳 Infraestrutura Local (Docker)
+Para garantir que todo mundo rode o projeto com o mesmo banco de dados e configurações, utilizamos Docker Compose.
+Não é necessário instalar o PostgreSQL na sua máquina, apenas o Docker.
+
+1. Pré-requisitos
+- Docker Desktop instalado e rodando (a baleia tem que estar verde/ativa).
+
+2. Comandos do Dia a Dia
+- Subir o ambiente (Banco + Interface):
+```
+docker-compose up -d
+```
+O parâmetro -d (detached) libera seu terminal para continuar usando.
+
+- Derrubar o ambiente
+```
+docker-compose down
+```
+
+- Ver o que está rodando
+```
+docker ps
+```
+---
+3. Acessando o Banco de Dados
+Nós incluímos o Adminer (uma interface visual leve) para você não precisar instalar nada extra.
+- URL de Acesso: http://localhost:8080
+
+🔑 Credenciais de Acesso (Copie exatamente assim):
+
+| Campo | Valor | Explicação |
+| :--- | :--- | :--- |
+| Sistema | PostgreSQL | O tipo do nosso banco. |
+| Servidor | db | Atenção: Dentro do Docker, o host é o nome do serviço, não "localhost". |
+| Usuário | admin | Definido no docker-compose.yml. |
+| Senha | admin | Definido no docker-compose.yml. |
+| Banco | iluminacity_db | O nome do banco do projeto. |
+
+(OBS: coloquei os valores padrão do docker-compose.yml, isso vai mudar no futuro)
